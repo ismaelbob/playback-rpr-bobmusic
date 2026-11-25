@@ -173,7 +173,8 @@ html,body{height:100%;background:var(--bg);color:var(--text);font:14px/1.4 var(-
 const BRIDGE_CMD = "_RS6d0b2440741d18348f22c9d8f53132621310890b";
 
 // Base command ID for "View: Go to project tab N".
-// Vanilla REAPER: 40830 = tab 1, 40831 = tab 2, etc.
+// This machine: 3122 = tab 1, 3123 = tab 2, etc.
+// Vanilla REAPER may use 40830 instead.
 // Verify in Actions list: search "Go to project tab"
 const TAB_CMD_BASE = 3122;
 
@@ -510,7 +511,7 @@ function renderRegions() {
         state.loopRegionId = null;
         document.getElementById("btn-loop").classList.toggle("on", false);
         renderRegions();
-        showStatus("Queued: " + (getRegionById(id) || {}).name || "Region");
+        showStatus("Queued: " + ((getRegionById(id) || {}).name || "Region"));
       } else {
         state.nextRegionId = null;
         state._queueTriggerPos = null;

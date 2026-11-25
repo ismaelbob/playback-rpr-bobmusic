@@ -26,20 +26,38 @@ local function write_json()
   local projects = {}
   local i = 0
   while true do
-    local proj = reaper.EnumProjects(i)
+    local proj, filename = reaper.EnumProjects(i, "")
     if not proj then break end
     local name = reaper.GetProjectName(proj, "")
     local ps = reaper.GetPlayStateEx(proj)
-    table.insert(projects, { index = i, name = name or "", playstate = ps })
+    table.insert(projects, {
+      index = i,
+      name = name or "",
+      filename = filename or "",
+      proj = proj,
+      playstate = ps
+    })
     i = i + 1
   end
 
-  local curr_name = reaper.GetProjectName(nil, "")
+  -- Identify the active tab by project handle so duplicate/untitled names
+  -- cannot point at the wrong one. Fall back to the full file path if needed.
+  local curr_proj, curr_filename = reaper.EnumProjects(-1, "")
   local curr_idx = 0
+  local found = false
   for i, p in ipairs(projects) do
-    if p.name == curr_name then
-      curr_idx = i - 1
+    if p.proj == curr_proj then
+      curr_idx = p.index
+      found = true
       break
+    end
+  end
+  if not found and curr_filename and curr_filename ~= "" then
+    for i, p in ipairs(projects) do
+      if p.filename == curr_filename then
+        curr_idx = p.index
+        break
+      end
     end
   end
 

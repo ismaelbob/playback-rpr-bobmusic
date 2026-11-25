@@ -90,8 +90,9 @@ http://<IP-DEL-PC>:8080/playback.html
 
 ## Verificar action IDs
 
-Las acciones de cambio de pestaña usan IDs numéricos. Vanilla REAPER usa
-`40830` para "Go to project tab 01", `40831` para tab 02, etc.
+Las acciones de cambio de pestaña usan IDs numéricos. Esta configuración usa
+`3122` para "Go to project tab 01", `3123` para tab 02, etc. Otras versiones
+de REAPER pueden usar `40830`, `40831`, ...
 
 Para verificar: Actions → **Show action list...** → buscar
 "Go to project tab". Si los IDs difieren, editar `TAB_CMD_BASE` en

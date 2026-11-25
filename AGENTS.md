@@ -10,7 +10,7 @@ Two-component REAPER web interface:
 ## Setup gotchas
 
 - **`BRIDGE_CMD`** (`playback.html:const BRIDGE_CMD`): must be manually set to the REAPER action Command ID of `session_bridge.lua`. Get it from Actions → right-click → "Copy selected action Command ID" (format `_RSxxxxxxxxxxxxx`). Default placeholder will fail at runtime.
-- **`TAB_CMD_BASE`** (`playback.html:const TAB_CMD_BASE`): defaults to `40830` (vanilla REAPER "Go to project tab 01"). Verify in Actions list; adjust if REAPER version differs.
+- **`TAB_CMD_BASE`** (`playback.html:const TAB_CMD_BASE`): currently set to `3122` ("Go to project tab 01" on this machine). Vanilla REAPER may use `40830` instead. Verify in Actions list; adjust if REAPER version differs.
 - **File placement**: `playback.html` goes in `reaper_www_root/`, `session_bridge.lua` goes in `Scripts/`.
 - **`playback_data.json`** is gitignored (not committed). Generated at runtime by `session_bridge.lua` each time the user taps Refresh.
 
